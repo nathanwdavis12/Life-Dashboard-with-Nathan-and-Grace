@@ -1,86 +1,125 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Life with Nathan and Grace</title>
+<title>Life with Nathan and Grace</title>
 
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            background: 
-                url("background.jpeg") left center / 60% 80% no-repeat fixed,
-                url("background2.jpg") right center / 30% 90% no-repeat fixed;
-            font-family: Arial, sans-serif;
-            color: black;
-            text-align: center;
-        }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .bulletin-photo {
-            position: absolute;
-            top: 120px;
-            left: 55%;
-            width: 375px;
-            opacity: 0.45;
-            transform: rotate(0deg);
-            box-shadow: 0 20px 45px rgba(0,0,0,.35);
-            border-radius: 8px;
-        }
+<style>
 
-        .overlay {
-            background: rgba(255, 255, 255, 0.75);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+body {
+margin:0;
+height:100vh;
+background:
+url("background.jpeg") left center / 60% 80% no-repeat fixed,
+url("background2.jpg") right center / 30% 90% no-repeat fixed;
+font-family:Arial, sans-serif;
+color:black;
+text-align:center;
+}
 
-        .life-sections {
-            position: absolute;
-            bottom: 80px;
-            width: 100%;
-            padding: 0 80px;
-            box-sizing: border-box;
-        }
+/* layered bulletin photo */
 
-        .life-grid {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
+.bulletin-photo{
+position:absolute;
+top:120px;
+left:55%;
+width:375px;
+opacity:0.45;
+transform:rotate(0deg);
+box-shadow:0 20px 45px rgba(0,0,0,.35);
+border-radius:8px;
+}
 
-        .life-box {
-            width: 15%;
-            text-align: left;
-        }
+/* white overlay */
 
-        .life-box h2 {
-            font-size: 20px;
-            letter-spacing: 1px;
-            margin-bottom: 6px;
-            font-weight: bold;
-        }
+.overlay{
+background:rgba(255,255,255,0.75);
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+}
 
-        .life-box ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            font-size: 12px;
-        }
+/* bottom sections */
 
-        .life-box li {
-            margin: 4px 0;
-        }
+.life-sections{
+position:absolute;
+bottom:80px;
+width:100%;
+padding:0 80px;
+box-sizing:border-box;
+}
 
-        .life-box a {
-            color: #00008B;
-            text-decoration: none;
-        }
+.life-grid{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+flex-wrap:wrap;
+}
 
-        .life-box a:hover {
-            text-decoration: underline;
-        }
+.life-box{
+width:15%;
+text-align:left;
+margin-bottom:20px;
+}
 
-    </style>
+.life-box h2{
+font-size:20px;
+letter-spacing:1px;
+margin-bottom:6px;
+font-weight:bold;
+}
+
+.life-box ul{
+list-style:none;
+padding:0;
+margin:0;
+font-size:12px;
+}
+
+.life-box li{
+margin:4px 0;
+}
+
+.life-box a{
+color:#00008B;
+text-decoration:none;
+}
+
+.life-box a:hover{
+text-decoration:underline;
+}
+
+/* RESPONSIVE LAYOUT FOR TABLETS & PHONES */
+
+@media (max-width: 900px){
+
+.life-grid{
+flex-direction:column;
+align-items:center;
+}
+
+.life-box{
+width:80%;
+text-align:center;
+}
+
+.bulletin-photo{
+position:static;
+width:70%;
+margin:20px auto;
+display:block;
+}
+
+.life-sections{
+position:static;
+padding:40px;
+}
+
+}
+
+</style>
 </head>
 
 <body>
@@ -149,8 +188,7 @@
 
 <div class="life-box">
 <h2>PLANNER & CALENDAR</h2>
-<ul>
-</ul>
+<ul></ul>
 </div>
 
 </div>
