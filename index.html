@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Life with Nathan and Grace</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: 
+		url("background.jpeg") left center / 50% 60% no-repeat fixed,
+		url("background2.jpg") right center / 30% 80% no-repeat fixed;
+            font-family: Arial, sans-serif;
+            color: black;
+            text-align: center;
+        }
+
+        /* Soft white fade over entire background */
+        .overlay {
+            background: rgba(255, 255, 255, 0.75);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* HORIZONTAL SPREAD SECTIONS */
+        .life-sections {
+            position: absolute;
+            bottom: 80px;
+            width: 100%;
+            padding: 0 80px;
+            box-sizing: border-box;
+        }
+
+        .life-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .life-box {
+            width: 15%;
+            text-align: left;
+        }
+
+        .life-box h2 {
+            font-size: 12px;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        .life-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 12px;
+        }
+
+        .life-box li {
+            margin: 4px 0;
+        }
+
+        .life-box a {
+            color: #00008B;
+            text-decoration: none;
+        }
+
+        .life-box a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="overlay">
+        <h1>Life with Nathan and Grace</h1>
+        <p>Forever and always.</p>
+    </div>
+
+    <div class="life-sections">
+        <div class="life-grid">
+
+            <div class="life-box">
+                <h2>DATE NIGHT</h2>
+                <ul>
+                    <li><a href="#">Restaurant List</a></li>
+                    <li><a href="#">Ratings (Movies, Restaurants, etc.)</a></li>
+                </ul>
+            </div>
+
+            <div class="life-box">
+                <h2>FINANCE</h2>
+                <ul>
+                    <li><a href="#">Savings Plan</a></li>
+                    <li><a href="#">Investments</a></li>
+                    <li><a href="#">Travel and Adventure</a></li>
+                    <li><a href="Income & Cost Spreadsheet.xlsx" target=_"blank">Income & Cost Spreadsheet</a></li>
+                </ul>
+            </div>
+
+            <div class="life-box">
+                <h2>CHILDREN</h2>
+                <ul>
+                    <li><a href="NamesWeLove.pdf" target="_blank">Names We Love</a></li>
+                    <li><a href="#">Future Plans</a></li>
+                </ul>
+            </div>
+
+            <div class="life-box">
+                <h2>HOUSE</h2>
+                <ul>
+                    <li><a href="#">Wants & Desires</a></li>
+                    <li><a href="#">Design Ideas</a></li>
+                </ul>
+            </div>
+
+            <div class="life-box">
+                <h2>JOB</h2>
+                <ul>
+                    <li><a href="#">Career Goals</a></li>
+                    <li><a href="#">Milestones</a></li>
+		    <li><a href="2LT Toolkit" target="_blank">2LT Toolkit</a></li>
+                </ul>
+            </div>
+
+            <div class="life-box">
+                <h2>MEMORIES</h2>
+                <ul>
+                    <li><a href="#">Photos!</a></li>
+                    <li><a href="#">Videos!</a></li>
+                    <li><a href="#">Notes</a></li>
+                </ul>
+            </div>
+
+            <div class="life-box">
+                <h2>PLANNER & CALENDAR</h2>
+                <ul>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
