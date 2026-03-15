@@ -18,6 +18,25 @@ color:black;
 text-align:center;
 }
 
+/* README button */
+
+.readme-button{
+position:absolute;
+top:20px;
+left:25px;
+font-size:14px;
+text-decoration:none;
+color:white;
+background:#00008B;
+padding:8px 14px;
+border-radius:6px;
+box-shadow:0 4px 10px rgba(0,0,0,.3);
+}
+
+.readme-button:hover{
+background:#000060;
+}
+
 /* layered bulletin photo */
 
 .bulletin-photo{
@@ -31,7 +50,7 @@ box-shadow:0 20px 45px rgba(0,0,0,.35);
 border-radius:8px;
 }
 
-/* white overlay */
+/* overlay */
 
 .overlay{
 background:rgba(255,255,255,0.75);
@@ -91,38 +110,12 @@ text-decoration:none;
 text-decoration:underline;
 }
 
-/* RESPONSIVE LAYOUT FOR TABLETS & PHONES */
-
-@media (max-width: 900px){
-
-.life-grid{
-flex-direction:column;
-align-items:center;
-}
-
-.life-box{
-width:80%;
-text-align:center;
-}
-
-.bulletin-photo{
-position:static;
-width:70%;
-margin:20px auto;
-display:block;
-}
-
-.life-sections{
-position:static;
-padding:40px;
-}
-
-}
-
 </style>
 </head>
 
 <body>
+
+<a href="readme.html" class="readme-button">README</a>
 
 <img src="background3.JPG" class="bulletin-photo">
 
@@ -137,7 +130,6 @@ padding:40px;
 <div class="life-box">
 <h2>DATE NIGHT</h2>
 <ul>
-<li><a href="#">Restaurant List</a></li>
 <li><a href="#">Ratings (Movies, Restaurants, etc.)</a></li>
 </ul>
 </div>
@@ -145,8 +137,7 @@ padding:40px;
 <div class="life-box">
 <h2>FINANCE</h2>
 <ul>
-<li><a href="#">Savings Plan</a></li>
-<li><a href="#">Investments</a></li>
+<li><a href="#">Monthly Finance History</a></li>
 <li><a href="#">Travel and Adventure</a></li>
 <li><a href="finance.html">Income & Cost Dashboard</a></li>
 </ul>
@@ -164,7 +155,6 @@ padding:40px;
 <h2>HOUSE</h2>
 <ul>
 <li><a href="#">Wants & Desires</a></li>
-<li><a href="#">Design Ideas</a></li>
 </ul>
 </div>
 
