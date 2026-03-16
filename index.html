@@ -13,7 +13,7 @@ height:100vh;
 background:
 url("background.jpeg") left center / 60% 80% no-repeat fixed,
 url("background2.jpg") right center / 30% 90% no-repeat fixed;
-font-family:Arial, sans-serif;
+font-family: Arial, sans-serif;
 color:black;
 text-align:center;
 }
@@ -25,7 +25,6 @@ position:absolute;
 top:20px;
 left:25px;
 font-size:14px;
-text-decoration:none;
 color:white;
 background:#00008B;
 padding:8px 14px;
@@ -34,49 +33,73 @@ box-shadow:0 4px 10px rgba(0,0,0,.3);
 cursor:pointer;
 }
 
-.readme-button:hover{
-background:#000060;
-}
+/* calendar */
 
-/* README popup */
-
-.readme-popup{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.5);
-justify-content:center;
-align-items:center;
-z-index:10;
-}
-
-.readme-content{
-background:white;
-padding:40px;
-max-width:700px;
+.calendar-box{
+position:absolute;
+top:90px;
+left:30px;
+width:420px;
+background:rgba(255,255,255,.18);
+padding:20px;
 border-radius:10px;
-box-shadow:0 10px 30px rgba(0,0,0,.4);
+box-shadow:0 10px 25px rgba(0,0,0,.3);
+backdrop-filter:blur(8px);
 text-align:left;
 }
 
-.close-button{
-margin-top:20px;
+.calendar-box h3{
+text-align:center;
+margin-top:0;
+font-size:20px;
+}
+
+.calendar-box table{
+width:100%;
+border-collapse:collapse;
+table-layout:fixed;
+}
+
+.calendar-box th{
+border:1px solid rgba(0,0,0,.15);
+background:rgba(255,255,255,.1);
+height:30px;
+}
+
+.calendar-box td{
+border:1px solid rgba(0,0,0,.15);
+height:60px;
+vertical-align:top;
+padding:4px;
+cursor:pointer;
+}
+
+.calendar-box small{
+display:block;
+font-size:11px;
+}
+
+.today{
+background:rgba(0,0,255,.12);
+}
+
+.completed{
+text-decoration:line-through;
+opacity:.6;
+}
+
+.calendar-box button{
+margin-top:12px;
+width:100%;
 background:#00008B;
 color:white;
-padding:10px 20px;
 border:none;
+padding:8px;
 border-radius:6px;
 cursor:pointer;
 }
 
-.close-button:hover{
-background:#000060;
-}
-
-/* layered bulletin photo */
+/* bulletin photo */
 
 .bulletin-photo{
 position:absolute;
@@ -84,9 +107,7 @@ top:120px;
 left:55%;
 width:375px;
 opacity:0.45;
-transform:rotate(0deg);
 box-shadow:0 20px 45px rgba(0,0,0,.35);
-border-radius:8px;
 }
 
 /* overlay */
@@ -97,6 +118,7 @@ height:100vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
+padding-top:40px;
 }
 
 /* bottom sections */
@@ -112,21 +134,17 @@ box-sizing:border-box;
 .life-grid{
 display:flex;
 justify-content:space-between;
-align-items:flex-start;
 flex-wrap:wrap;
 }
 
 .life-box{
 width:15%;
 text-align:left;
-margin-bottom:20px;
 }
 
 .life-box h2{
 font-size:20px;
-letter-spacing:1px;
 margin-bottom:6px;
-font-weight:bold;
 }
 
 .life-box ul{
@@ -136,17 +154,34 @@ margin:0;
 font-size:12px;
 }
 
-.life-box li{
-margin:4px 0;
-}
-
 .life-box a{
 color:#00008B;
 text-decoration:none;
 }
 
-.life-box a:hover{
-text-decoration:underline;
+/* popup */
+
+.popup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.5);
+justify-content:center;
+align-items:center;
+z-index:1000;
+}
+
+.popup-content{
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 15px 35px rgba(0,0,0,.4);
+max-width:520px;
+text-align:left;
+position:relative;
 }
 
 </style>
@@ -154,34 +189,53 @@ text-decoration:underline;
 
 <body>
 
-<!-- README BUTTON -->
 <div class="readme-button" onclick="openReadme()">README</div>
 
-<!-- README POPUP -->
-<div id="readmePopup" class="readme-popup">
-<div class="readme-content">
-
-<h2>README</h2>
+<div id="readmePopup" class="popup">
+<div class="popup-content">
 
 <p>
-This website is meant to be a shared hub for organizing life together.
+Baby gorgeous,
+<br><br>
+This website is meant to be a central hub for anything we want as we build our life together. The idea came to me thinking about graduation. Specifically, I thought of it as I started to build my own finance spreadsheet to help keep track of my expenses with my income.
+<br><br>
+But then I thought, "this is something that I could share with Grace because she would find it useful, too," and then I ended up creating this website so that we can not just organize our finances… but EVERYTHING.
+<br><br>
+Literally anything we want.
 </p>
 
-<p>
-The structure of the site is intentionally flexible. Sections can be added,
-changed, or removed anytime depending on what we want to track or plan.
-</p>
+<br>
 
-<p>
-If there is something new we want to organize — travel plans, projects,
-ideas, goals, memories, or anything else — it can simply become a new section.
-</p>
+<button onclick="closeReadme()">Close</button>
 
-<p>
-The goal is for this site to grow alongside our life together.
-</p>
+</div>
+</div>
 
-<button class="close-button" onclick="closeReadme()">Back to Home</button>
+<div class="calendar-box">
+
+<h3 id="monthTitle"></h3>
+
+<table id="calendarTable"></table>
+
+<button onclick="openCalendarEditor()">Edit Calendar</button>
+
+</div>
+
+<div id="calendarEditor" class="popup">
+<div class="popup-content">
+
+<h3>Add Event</h3>
+
+<input id="eventDate" type="date">
+
+<br><br>
+
+<input id="eventText" placeholder="Event description">
+
+<br><br>
+
+<button onclick="saveEvent()">Save</button>
+<button onclick="closeCalendarEditor()">Close</button>
 
 </div>
 </div>
@@ -200,7 +254,7 @@ The goal is for this site to grow alongside our life together.
 <h2>DATE NIGHT</h2>
 <ul>
 <li><a href="#">Restaurant List</a></li>
-<li><a href="#">Ratings (Movies, Restaurants, etc.)</a></li>
+<li><a href="#">Ratings</a></li>
 </ul>
 </div>
 
@@ -209,53 +263,181 @@ The goal is for this site to grow alongside our life together.
 <ul>
 <li><a href="#">Savings Plan</a></li>
 <li><a href="#">Investments</a></li>
-<li><a href="#">Travel and Adventure</a></li>
+<li><a href="#">Travel</a></li>
 <li><a href="finance.html">Income & Cost Dashboard</a></li>
 </ul>
 </div>
 
-<div class="life-box">
-<h2>CHILDREN</h2>
-<ul>
-<li><a href="NamesWeLove.pdf" target="_blank">Names We Love</a></li>
-<li><a href="#">Future Plans</a></li>
-</ul>
+<div class="life-box"> 
+<h2>CHILDREN</h2> 
+<ul> 
+<li><a href="NamesWeLove.pdf" target="_blank">Names We Love</a></li> 
+<li><a href="#">Future Plans</a></li> 
+</ul> 
+</div> 
+
+<div class="life-box"> 
+<h2>HOUSE</h2> 
+<ul> 
+<li><a href="#">Wants & Desires</a></li> 
+<li><a href="#">Design Ideas</a></li> 
+</ul> 
+</div> 
+
+<div class="life-box"> 
+<h2>JOB</h2> 
+<ul> 
+<li><a href="#">Career Goals</a></li> 
+<li><a href="#">Milestones</a></li> 
+<li><a href="2LT Toolkit" target="_blank">2LT Toolkit</a></li> 
+</ul> 
+</div> 
+
+<div class="life-box"> 
+<h2>MEMORIES</h2> 
+<ul> 
+<li><a href="https://drive.google.com/drive/folders/12w4sKvWNV3KVrCzMBN_itqBh4RkTtkqr" target="_blank">Photos and Videos!</a></li> <li><a href="#">Notes</a></li> 
+</ul> 
 </div>
 
-<div class="life-box">
-<h2>HOUSE</h2>
-<ul>
-<li><a href="#">Wants & Desires</a></li>
-<li><a href="#">Design Ideas</a></li>
-</ul>
-</div>
-
-<div class="life-box">
-<h2>JOB</h2>
-<ul>
-<li><a href="#">Career Goals</a></li>
-<li><a href="#">Milestones</a></li>
-<li><a href="2LT Toolkit" target="_blank">2LT Toolkit</a></li>
-</ul>
-</div>
-
-<div class="life-box">
-<h2>MEMORIES</h2>
-<ul>
-<li><a href="Photos&Videos.zip" target="_blank">Photos and Videos!</a></li>
-<li><a href="#">Notes</a></li>
-</ul>
-</div>
-
-<div class="life-box">
-<h2>PLANNER & CALENDAR</h2>
-<ul></ul>
-</div>
 
 </div>
 </div>
 
 <script>
+
+let events = JSON.parse(localStorage.getItem("calendarEvents")) || {};
+
+function generateCalendar(){
+
+let now = new Date();
+let month = now.getMonth();
+let year = now.getFullYear();
+let today = now.getDate();
+
+document.getElementById("monthTitle").innerText =
+now.toLocaleString("default",{month:"long"})+" "+year;
+
+let firstDay = new Date(year,month,1).getDay();
+let daysInMonth = new Date(year,month+1,0).getDate();
+
+let totalCells = firstDay + daysInMonth;
+let totalRows = Math.ceil(totalCells / 7);
+
+let table=document.getElementById("calendarTable");
+table.innerHTML="";
+
+/* weekday header */
+
+let headerRow=document.createElement("tr");
+let days=["Su","Mo","Tu","We","Th","Fr","Sa"];
+
+days.forEach(d=>{
+let th=document.createElement("th");
+th.innerText=d;
+headerRow.appendChild(th);
+});
+
+table.appendChild(headerRow);
+
+let date=1;
+
+for(let i=0;i<totalRows;i++){
+
+let row=document.createElement("tr");
+
+for(let j=0;j<7;j++){
+
+let cell=document.createElement("td");
+
+if(i===0 && j<firstDay){
+
+cell.innerHTML="";
+
+}else if(date>daysInMonth){
+
+cell.innerHTML="";
+
+}else{
+
+let key=year+"-"+month+"-"+date;
+
+cell.innerHTML="<strong>"+date+"</strong>";
+
+if(date===today){
+cell.classList.add("today");
+}
+
+if(events[key] && events[key].text){
+
+let span=document.createElement("small");
+span.innerText=events[key].text;
+
+if(events[key].done){
+span.classList.add("completed");
+}
+
+span.onclick=function(e){
+e.stopPropagation();
+toggleComplete(key);
+};
+
+cell.appendChild(span);
+
+}
+
+date++;
+
+}
+
+row.appendChild(cell);
+
+}
+
+table.appendChild(row);
+
+}
+
+}
+
+function openCalendarEditor(){
+document.getElementById("calendarEditor").style.display="flex";
+}
+
+function closeCalendarEditor(){
+document.getElementById("calendarEditor").style.display="none";
+}
+
+function saveEvent(){
+
+let date=document.getElementById("eventDate").value;
+let text=document.getElementById("eventText").value;
+
+let parts=date.split("-");
+let year=parts[0];
+let month=parseInt(parts[1])-1;
+let day=parseInt(parts[2]);
+
+let key=year+"-"+month+"-"+day;
+
+events[key]={text:text,done:false};
+
+localStorage.setItem("calendarEvents",JSON.stringify(events));
+
+generateCalendar();
+closeCalendarEditor();
+
+}
+
+function toggleComplete(key){
+
+events[key].done=!events[key].done;
+
+localStorage.setItem("calendarEvents",JSON.stringify(events));
+
+generateCalendar();
+
+}
 
 function openReadme(){
 document.getElementById("readmePopup").style.display="flex";
@@ -264,6 +446,8 @@ document.getElementById("readmePopup").style.display="flex";
 function closeReadme(){
 document.getElementById("readmePopup").style.display="none";
 }
+
+generateCalendar();
 
 </script>
 
